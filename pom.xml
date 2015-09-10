@@ -17,13 +17,19 @@
     </modules>
 
     <properties>
-        <servlet.version>3.1.0</servlet.version>
-        <jstl.version>1.2</jstl.version>
         <hibernate.version>4.3.7.Final</hibernate.version>
         <postgresql.version>9.4-1202-jdbc42</postgresql.version>
-        <jsf.version>2.2.12</jsf.version>
         <primefaces.version>5.2</primefaces.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

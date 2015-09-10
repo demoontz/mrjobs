@@ -4,20 +4,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Repository
-@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class GenericHibernateService<T extends Serializable>
     implements GenericService<T> {
 
-    @Autowired
     private SessionFactory sessionFactory;
     private Class<T> tClass;
 
