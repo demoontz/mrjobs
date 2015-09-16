@@ -41,5 +41,16 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                     <warName>
+                         mrjobs
+                     </warName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

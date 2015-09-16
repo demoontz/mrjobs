@@ -13,4 +13,16 @@
     <artifactId>mrjobs-controllers</artifactId>
     <version>${parent.version}</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.demoon</groupId>
+            <artifactId>mrjobs-model</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.demoon</groupId>
+            <artifactId>mrjobs-persistence</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>
