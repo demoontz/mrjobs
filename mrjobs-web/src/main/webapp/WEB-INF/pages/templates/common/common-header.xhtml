@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<body>
+
+<ui:composition>
+    <p:panelGrid>
+        <p:row>
+            <p:column>
+                <ui:insert name="logo-panel">
+                    <ui:include src="/WEB-INF/pages/panels/logo-panel.xhtml"/>
+                </ui:insert>
+            </p:column>
+            <p:column colspan="2">
+                <ui:insert name="welcome-panel">
+                    <ui:include src="/WEB-INF/pages/panels/welcome-panel.xhtml"/>
+                </ui:insert>
+            </p:column>
+            <p:column rowspan="2">
+                <ui:insert name="login-panel">
+                    <ui:include src="/WEB-INF/pages/panels/login-panel.xhtml"/>
+                </ui:insert>
+            </p:column>
+        </p:row>
+        <p:row>
+            <p:column>
+                <ui:insert name="contacts-panel">
+                    <ui:include src="/WEB-INF/pages/panels/contacts-panel.xhtml"/>
+                </ui:insert>
+            </p:column>
+            <p:column>
+                <ui:insert name="counter-panel">
+                    <ui:include src="/WEB-INF/pages/panels/counter-panel.xhtml"/>
+                </ui:insert>
+            </p:column>
+        </p:row>
+        <p:row>
+            <p:column colspan="4">
+                <ui:insert name="main-menu">
+                    <ui:include src="/WEB-INF/pages/menu/main-menu.xhtml"/>
+                </ui:insert>
+            </p:column>
+        </p:row>
+    </p:panelGrid>
+</ui:composition>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+
+    <ui:composition>
+        <h:form>
+            <p:menubar>
+                <p:submenu label="Диагностика">
+                    <p:menuitem value="Тестирование" url="#"/>
+                    <p:menuitem value="Построение карьеры" url="#"/>
+                    <p:menuitem value="Зарплатный калькулятор" url="#"/>
+                </p:submenu>
+                <p:submenu label="О нас">
+                    <p:menuitem value="Карьера" url="#"/>
+                </p:submenu>
+                <p:submenu label="Ресурсы">
+                    <p:menuitem value="Блог" url="#"/>
+                    <p:menuitem value="Библиотека" url="#"/>
+                    <p:menuitem value="Case Studies" url="#"/>
+                    <p:menuitem value="Вебинары" url="#"/>
+                    <p:menuitem value="Советы знаменитых людей" url="#"/>
+                </p:submenu>
+                <p:submenu label="FAQ">
+                    <p:menuitem value="Чат" url="#"/>
+                </p:submenu>
+                <p:menuitem value="Контакты" url="#"/>
+                <f:facet name="options">
+                    <p:inputText style="margin-right:10px" placeholder="Search"/>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</h:body>
+</html>

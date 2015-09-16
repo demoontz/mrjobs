@@ -1,0 +1,22 @@
+.ui-layout-container {
+    width: 1000px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui-layout-unit {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui-layout-north {
+    z-index: 20 !important;
+    overflow: visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow: visible !important;
+}
+
