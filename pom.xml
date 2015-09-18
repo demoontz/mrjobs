@@ -17,19 +17,31 @@
     </modules>
 
     <properties>
+        <javax.version>7.0</javax.version>
         <hibernate.version>4.3.7.Final</hibernate.version>
         <postgresql.version>9.4-1202-jdbc42</postgresql.version>
         <primefaces.version>5.2</primefaces.version>
+        <junit.version>4.12</junit.version>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <version>${javax.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
+
 
     <build>
         <plugins>
