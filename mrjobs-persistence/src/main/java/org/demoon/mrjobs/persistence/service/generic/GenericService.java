@@ -1,4 +1,4 @@
-package org.demoon.mrjobs.persistence.service;
+package org.demoon.mrjobs.persistence.service.generic;
 
 import java.io.Serializable;
 import java.util.List;

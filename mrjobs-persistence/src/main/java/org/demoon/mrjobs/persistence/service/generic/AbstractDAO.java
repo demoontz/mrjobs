@@ -1,4 +1,4 @@
-package org.demoon.mrjobs.persistence.service;
+package org.demoon.mrjobs.persistence.service.generic;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

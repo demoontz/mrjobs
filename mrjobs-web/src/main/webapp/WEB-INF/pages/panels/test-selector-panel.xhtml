@@ -11,15 +11,15 @@
         <h:form id="form">
             <p/><p:outputLabel value="Select the test you want to pass:"/>
 
-            <p/><p:selectOneMenu value="#{testCase.questionnaireId}">
-            <f:selectItems value="#{questionnaireService.availableQuestionnaires}"
+            <p/><p:selectOneMenu value="">
+            <f:selectItems value=""
                            var="questionnaire"
                            itemLabel="#{questionnaire.name}"
                            itemValue="#{questionnaire.id}"/>
         </p:selectOneMenu>
 
             <p/><h:commandButton value="Start"
-                                 action="#{testCase.startTestCase}"/>
+                                 action=""/>
         </h:form>
     </ui:composition>
 </h:body>

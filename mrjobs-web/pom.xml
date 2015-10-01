@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>mrjobs-web</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${parent.version}</version>
     <packaging>war</packaging>
 
     <dependencies>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.demoon</groupId>
             <artifactId>mrjobs-controllers</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${parent.version}</version>
         </dependency>
 
         <dependency>

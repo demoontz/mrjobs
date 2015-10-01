@@ -1,30 +1,30 @@
 package org.demoon.mrjobs.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
+/**
+ * Created by demoon on 22.09.2015.
+ */
 @Entity
-@Table(name = "questions")
-public class Question
+@Table(name = "rules")
+public class Rule
     extends GenEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long         id;
+    private Long   id;
     @Column
-    private String       text;
+    private String text;
     @Column
-    private String       descr;
-    @OneToMany
-    private List<Answer> answer;
-    @Column
-    private Long         typeQ;
+    private String descr;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -43,21 +43,5 @@ public class Question
 
     public void setDescr(String descr) {
         this.descr = descr;
-    }
-
-    public List<Answer> getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(List<Answer> answer) {
-        this.answer = answer;
-    }
-
-    public Long getTypeQ() {
-        return typeQ;
-    }
-
-    public void setTypeQ(Long typeQ) {
-        this.typeQ = typeQ;
     }
 }
