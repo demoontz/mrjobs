@@ -15,6 +15,8 @@ public class Answer extends GenEntity{
     private String  descr;
     @Column
     private boolean isTrueAnswer;
+    @Column
+    private int orderId;
 
     public Long getId() {
         return id;
@@ -46,5 +48,13 @@ public class Answer extends GenEntity{
 
     public void setIsTrueAnswer(boolean isTrueAnswer) {
         this.isTrueAnswer = isTrueAnswer;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

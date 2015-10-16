@@ -1,9 +1,6 @@
 package org.demoon.mrjobs.view;
 
-import org.demoon.mrjobs.model.entity.PassTest;
-import org.demoon.mrjobs.model.entity.TestA;
-import org.demoon.mrjobs.model.entity.TestGroup;
-import org.demoon.mrjobs.model.entity.User;
+import org.demoon.mrjobs.model.entity.*;
 import org.demoon.mrjobs.persistence.service.TestGroupDAO;
 import org.demoon.mrjobs.persistence.service.UserDAO;
 
@@ -29,20 +26,23 @@ public class TestGroupBean {
     private UserDAO userDAO;
 
 
-
     private List<TestA>     listTestA;
     private List<TestGroup> listTestG;
     private TestA           testA;
     private TestGroup       testGroup;
+    private Question        question;
     private User            user;
     private String          result;
     private int             testType;
+
 
     @PostConstruct
     private void init() {
         System.out.println("init");
         listTestG = testGroupDAO.getAll();
         testGroup = listTestG.get(0);
+        testA = testGroup.getTestAList().get(0);
+        question = testA.getQuestion().get(0);
 
     }
     //===M===
@@ -85,11 +85,43 @@ public class TestGroupBean {
         return user;
     }
 
-    public void changeTest(int t) {
-        System.out.println("ch test="+t);
+    public String goTest(int t) {
+        System.out.println("ch test=" + t);
         testType = t;
-        testGroup = listTestG.get(t);
+        testGroup = listTestG.get(t - 1);
+        testA = testGroup.getTestAList().get(0);
+        question = testA.getQuestion().get(0);
+        return "test";
+    }
 
+    public void prevQ() {
+        System.out.println("prev q");
+        if (testA.getQuestion().indexOf(question) > 0)
+        {
+            question = testA.getQuestion().get(testA.getQuestion().indexOf(question) - 1);
+        } else {
+            if (testGroup.getTestAList().indexOf(testA)>0){
+                testA=testGroup.getTestAList().get(testGroup.getTestAList().indexOf(testA)-1);
+                question = testA.getQuestion().get(testA.getQuestion().size()-1);
+            }
+
+        }
+
+
+    }
+
+    public void nextQ() {
+        System.out.println("next q");
+        if ((testA.getQuestion().indexOf(question) + 1) < testA.getQuestion().size())
+        {
+            question = testA.getQuestion().get(testA.getQuestion().indexOf(question) + 1);
+        } else {
+            if (testGroup.getTestAList().indexOf(testA)+1<testGroup.getTestAList().size()){
+                testA=testGroup.getTestAList().get(testGroup.getTestAList().indexOf(testA)+1);
+                question = testA.getQuestion().get(0);
+            }
+
+        }
     }
 
     //===gs===
@@ -108,7 +140,6 @@ public class TestGroupBean {
     public void setUser(User user) {
         this.user = user;
     }
-
 
 
     public List<TestGroup> getListTestG() {
@@ -149,5 +180,21 @@ public class TestGroupBean {
 
     public void setTestType(int testType) {
         this.testType = testType;
+    }
+
+    public List<TestA> getListTestA() {
+        return listTestA;
+    }
+
+    public void setListTestA(List<TestA> listTestA) {
+        this.listTestA = listTestA;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }

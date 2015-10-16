@@ -23,6 +23,8 @@ public class TestA
     private List<Question> question;
     @OneToOne
     private Rule           rule;
+    @Column
+    private int orderId;
 
     @Override
     public Long getId() {
@@ -64,6 +66,14 @@ public class TestA
 
     public void setRule(Rule rule) {
         this.rule = rule;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }
 

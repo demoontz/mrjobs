@@ -22,6 +22,8 @@ public class TestGroup
     private List<TestA> testAList;
     @OneToOne
     private Rule        rule;
+    @Column
+    private int orderId;
 
     public String getName() {
         return name;
@@ -63,5 +65,13 @@ public class TestGroup
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

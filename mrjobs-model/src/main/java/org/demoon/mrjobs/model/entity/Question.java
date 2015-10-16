@@ -20,6 +20,8 @@ public class Question
     private List<Answer> answer;
     @Column
     private Long         typeQ;
+    @Column
+    private int orderId;
 
     public Long getId() {
         return id;
@@ -59,5 +61,13 @@ public class Question
 
     public void setTypeQ(Long typeQ) {
         this.typeQ = typeQ;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

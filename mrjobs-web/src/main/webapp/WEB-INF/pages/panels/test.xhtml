@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <ui:composition>
+        <h:form id="form">
+            <p:panel style="width: 80%; position:absolute;left:10%;">
+                <p:fieldset legend="Правила теста:" toggleable="true" toggleSpeed="500" style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+
+                        <h:outputText
+                                value="#{testGroupBean.testGroup.rule.text}"/>
+                    </h:panelGrid>
+                </p:fieldset>
+
+                <p:fieldset id="fldSet" legend="Описание вопроса" toggleable="true" toggleSpeed="500"
+                            style="margin-bottom:20px">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="#{testGroupBean.testA.name}"/>
+                        <h:outputText value="#{testGroupBean.testA.descr}"/>
+                    </h:panelGrid>
+                </p:fieldset>
+                <p:fieldset>
+                    <p:panelGrid columns="2" styleClass="ui-noborder">
+
+                        <p:column headerText="Q" width="300">
+                            <h:outputText value="#{testGroupBean.question.text}"/>
+                        </p:column>
+                        <p:column headerText="A" width="200" rendered="#{testGroupBean.question.typeQ==1}">
+                            <p:selectOneRadio layout="grid" columns="1">
+                                <f:selectItems value="#{testGroupBean.question.answer}" var="c" itemLabel="#{c.text}"
+                                               itemValue="#{c}"/>
+                            </p:selectOneRadio>
+                        </p:column>
+                        <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==2}">
+                            <p:inputText/>
+                        </p:column>
+                        <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==0}">
+                            <p:selectOneRadio layout="grid" columns="1">
+                                <f:selectItem itemValue="0" itemLabel="0"/>
+                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                <f:selectItem itemValue="2" itemLabel="2"/>
+                                <f:selectItem itemValue="3" itemLabel="3"/>
+                            </p:selectOneRadio>
+                        </p:column>
+                        <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==3}">
+                            <p:selectOneRadio layout="grid" columns="1">
+                                <f:selectItem itemValue="0" itemLabel="Верно"/>
+                                <f:selectItem itemValue="1" itemLabel="Пожалуй верно"/>
+                                <f:selectItem itemValue="2" itemLabel="Пожалуй неверно"/>
+                                <f:selectItem itemValue="3" itemLabel="Неверно"/>
+                            </p:selectOneRadio>
+                        </p:column>
+
+
+                    </p:panelGrid>
+                </p:fieldset>
+
+                <p:panelGrid columns="3" style="position: relative;left:25%;right:25% " styleClass="ui-noborder">
+
+                    <p:commandLink value="предыдущий вопрос" actionListener="#{testGroupBean.prevQ()}"
+                                   update="form"/>
+                    <p:column/>
+                    <p:commandLink value="следующий вопрос" actionListener="#{testGroupBean.nextQ()}"
+                                   update="form"/>
+                </p:panelGrid>
+                <p:commandButton value="Закончить тест" style="position:relative;left: 80%"/>
+            </p:panel>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>
