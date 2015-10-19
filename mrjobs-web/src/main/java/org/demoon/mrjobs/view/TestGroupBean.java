@@ -1,6 +1,9 @@
 package org.demoon.mrjobs.view;
 
-import org.demoon.mrjobs.model.entity.*;
+import org.demoon.mrjobs.model.entity.Question;
+import org.demoon.mrjobs.model.entity.TestA;
+import org.demoon.mrjobs.model.entity.TestGroup;
+import org.demoon.mrjobs.model.entity.User;
 import org.demoon.mrjobs.persistence.service.TestGroupDAO;
 import org.demoon.mrjobs.persistence.service.UserDAO;
 
@@ -10,7 +13,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by demoon on 22.09.2015.
@@ -26,15 +31,15 @@ public class TestGroupBean {
     private UserDAO userDAO;
 
 
-    private List<TestA>     listTestA;
-    private List<TestGroup> listTestG;
-    private TestA           testA;
-    private TestGroup       testGroup;
-    private Question        question;
-    private User            user;
-    private String          result;
-    private int             testType;
-
+    private List<TestA>                     listTestA;
+    private List<TestGroup>                 listTestG;
+    private TestA                           testA;
+    private TestGroup                       testGroup;
+    private Question                        question;
+    private User                            user;
+    private String                          result;
+    private int                             testType;
+    private Map<Integer, ArrayList<String>> testResult1;
 
     @PostConstruct
     private void init() {
@@ -48,33 +53,18 @@ public class TestGroupBean {
     //===M===
 
     public String finishTest() {
-
-        result = calcTestResult();
-        user.getPassTestList().add(new PassTest(testGroup, result));
-        userDAO.update(user);
-        return "resultpage";
+        CalcTestResult c = new CalcTestResult();
+        testResult1 = c.calcTestResult(testGroup);
+        result="";
+        for (String s:testResult1.get(0)){
+            result+=s;
+        }
+        for (String s:testResult1.get(1)){
+            result+=s;
+        }
+        return "result";
     }
 
-    private String calcTestResult() {
-//        for(TestA t: testGroup.getTestAList()){
-//            Map<Integer,Integer> r=new HashMap<>();
-//
-//            int qresult=0;
-//            for(Question q: t.getQuestion()){
-//                qresult+=q.getAnswer();
-//            }
-//
-//
-//            r.get(t.getRule().getId().intValue());
-//            r.add(t.getRule().getId().intValue(), (r.get(t.getRule().getId().intValue()))+t.get);
-//
-//
-//        }
-//        for (int i = 0; i < ; i++) {
-//
-//        }
-        return null;
-    }
 
     public User getCurrentUser() {
 

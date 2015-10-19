@@ -23,6 +23,9 @@ public class Question
     @Column
     private int orderId;
 
+    private Long curentAnsverId;
+
+
     public Long getId() {
         return id;
     }
@@ -69,5 +72,13 @@ public class Question
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public Long getCurentAnsverId() {
+        return curentAnsverId;
+    }
+
+    public void setCurentAnsverId(Long curentAnsverId) {
+        this.curentAnsverId = curentAnsverId;
     }
 }

@@ -3,9 +3,7 @@ package org.demoon.mrjobs.model.entity;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Created by demoon on 23.09.2015.
- */
+
 @Entity
 @Table(name = "testgroup")
 public class TestGroup
