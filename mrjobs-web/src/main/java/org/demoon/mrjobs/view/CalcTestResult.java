@@ -23,29 +23,33 @@ public class CalcTestResult {
     }
 
     private HashMap<Integer,Integer> calcTest1(TestGroup testGroup) {
-        int r[] = {0, 0, 0, 0, 0, 0, 0};
-        String res = "";
+        int r[] = {0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0};
+
         for (TestA testA : testGroup.getTestAList()) {
 
             int i = 0;
             for (Question q : testA.getQuestion()) {
-                r[i] += q.getCurentAnsverId();
+                if (q.getCurentAnsverId()!=null) r[i] += q.getCurentAnsverId();
                 i++;
             }
         }
-        int r1max = 0;
+
+
         HashMap<Integer, Integer> result=new HashMap<>();
+
         for (int i = 0; i < 2; i++) {
+            int r1max = i*7;
             for (int j = 0; j < 4; j++) {
-                if (r[r1max] < r[j + 1]) {
-                    r1max = j + 1;
+                if (r[r1max] < r[i*7+j + 1]) {
+                    r1max = i*7+j + 1;
                 }
             }
-            result.put(i,r1max);
-            if (r[5] > r[6]) {
-                result.put(i+1,0);
+            result.put(i*2,r1max-i*7);
+
+            if (r[5+i*7] < r[6+i*7]) {
+                result.put(i*2+1,0);
             } else {
-                result.put(i+1,1);
+                result.put(i*2+1,1);
             }
         }
         return result;

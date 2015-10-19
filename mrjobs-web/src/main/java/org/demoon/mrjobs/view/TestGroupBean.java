@@ -56,10 +56,10 @@ public class TestGroupBean {
         CalcTestResult c = new CalcTestResult();
         testResult1 = c.calcTestResult(testGroup);
         result="";
-        for (String s:testResult1.get(0)){
+        for (String s:testResult1.get(1)){
             result+=s;
         }
-        for (String s:testResult1.get(1)){
+        for (String s:testResult1.get(2)){
             result+=s;
         }
         return "result";
@@ -157,6 +157,13 @@ public class TestGroupBean {
     }
 
     public String getResult() {
+//        String(request.getParameter("Name").getBytes("ISO-8859-1"),"Cp1251");
+//        String str= null;
+//        try {
+//            str = new String(result.getBytes("Cp1251"));
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
         return result;
     }
 
