@@ -14,19 +14,19 @@
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <h:outputText
-                                value="#{testGroupBean.testGroup.rule.text}"/>
+                                value="#{testGroupBean.testA.rule.text}"/>
                     </h:panelGrid>
                 </p:fieldset>
 
                 <p:fieldset id="fldSet" legend="Описание вопроса" toggleable="true" toggleSpeed="500"
-                            style="margin-bottom:20px">
-                    <h:panelGrid columns="2" cellpadding="5">
+                            style="margin-bottom:20px" rendered="#{testGroupBean.question.typeQ!=9}">
+                    <h:panelGrid columns="2" cellpadding="5" >
                         <h:outputText value="#{testGroupBean.testA.name}"/>
                         <h:outputText value="#{testGroupBean.testA.descr}"/>
                     </h:panelGrid>
                 </p:fieldset>
-                <p:fieldset>
-                    <p:panelGrid columns="2" styleClass="ui-noborder">
+                <p:fieldset rendered="#{testGroupBean.question.typeQ!=9}">
+                    <p:panelGrid columns="2" styleClass="ui-noborder" >
 
                         <p:column headerText="Q" width="300">
                             <h:outputText value="#{testGroupBean.question.text}"/>
@@ -59,6 +59,13 @@
 
 
                     </p:panelGrid>
+
+
+
+                </p:fieldset>
+
+                <p:fieldset rendered="#{testGroupBean.question.typeQ==9}">
+                    <h:outputText value="#{testGroupBean.question.text}"/>
                 </p:fieldset>
 
                 <p:panelGrid columns="3" style="position: relative;left:25%;right:25% " styleClass="ui-noborder">

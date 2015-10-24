@@ -46,7 +46,11 @@ public abstract class AbstractDAO<T> {
 		TypedQuery<T> q = em.createQuery(query, classType);
 		return q.getResultList();
 	}
-
+	public List<T> getAllOrderId() {
+		String query = "SELECT t FROM " + classType.getName() + " t order by orderId";
+		TypedQuery<T> q = em.createQuery(query, classType);
+		return q.getResultList();
+	}
 	@Override
 	protected void finalize() throws Throwable {
 		if (em != null && em.isOpen()) {

@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "testa")
 public class TestA
-    extends GenEntity {
+    extends GenEntity
+    implements Comparable<TestA> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +25,7 @@ public class TestA
     @OneToOne
     private Rule           rule;
     @Column
-    private int orderId;
+    private int            orderId;
 
     @Override
     public Long getId() {
@@ -74,6 +75,17 @@ public class TestA
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    @Override
+    public int compareTo(TestA o) {
+        if (this.orderId < o.orderId) {
+            return -1;
+        }
+        if (this.orderId > o.orderId) {
+            return 1;
+        }
+        return 0;
     }
 }
 

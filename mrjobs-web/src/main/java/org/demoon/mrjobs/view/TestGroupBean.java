@@ -13,9 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by demoon on 22.09.2015.
@@ -44,8 +42,9 @@ public class TestGroupBean {
     @PostConstruct
     private void init() {
         System.out.println("init");
-        listTestG = testGroupDAO.getAll();
+        listTestG = testGroupDAO.getAllOrderId();
         testGroup = listTestG.get(0);
+        Collections.sort(testGroup.getTestAList());
         testA = testGroup.getTestAList().get(0);
         question = testA.getQuestion().get(0);
 
