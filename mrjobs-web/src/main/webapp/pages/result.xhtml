@@ -4,7 +4,7 @@
 <html xmlns='http://www.w3.org/1999/xhtml'
       xmlns:h='http://java.sun.com/jsf/html'
       xmlns:ui='http://java.sun.com/jsf/facelets'
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 
 <h:body>
 
@@ -12,17 +12,33 @@
 
         <ui:define name="page-body">
             <h:form>
-                <p:outputPanel value="#{testGroupBean.listTestG}" var="testG" chunkSize="10">
-                    <f:facet name="header">
-                        Ваш результат:
-                    </f:facet>
-
-                    <p:fieldset >
-                     <h:outputText value="#{testGroupBean.result}"/>
-                    </p:fieldset>
-                </p:outputPanel>
+                <p:panel style="width: 80%; position:absolute;left:10%;">
 
 
+                    Поздравляем! Вы успешно прошли тестирование. Перед вами два списка – профессии, к которым вы наиболее склонны и профессии, которые можете выполнять сейчас.
+                    Совпадения в обоих списках может гарантировать успешную карьеру, так как занятие любимым делом позволяет достичь в профессии наивысших результатов.
+                    Если совпадений в списках нет, то возможно, вы занимаетесь не тем делом, к которому вы максимально способны.
+                    Предлагаем вам продолжить исследовать ваши таланты и пройти следующий тест для уточнения сферы применения ваших врожденных способностей
+
+
+                    <br/>
+                    Ваши результаты:
+                    Тест "Я хочу"
+                    <p:dataList value="#{testGroupBean.result1a}" var="reslt">
+                     #{reslt}
+                    </p:dataList>
+
+
+
+                    Тест "Я могу"
+                    <p:dataList value="#{testGroupBean.result1b}" var="reslt">
+                        #{reslt}
+                    </p:dataList>
+
+                    <br/>
+                    <p:commandLink value="Перейти к тесту 2" action="#{testGroupBean.goTest(2)}" ajax="false"/>
+
+                </p:panel>
             </h:form>
         </ui:define>
 

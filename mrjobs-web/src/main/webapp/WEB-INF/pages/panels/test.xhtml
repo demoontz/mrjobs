@@ -68,6 +68,10 @@
                     <h:outputText value="#{testGroupBean.question.text}"/>
                 </p:fieldset>
 
+                <p:fieldset rendered="#{testGroupBean.question.typeQ==8}">
+                    <h:outputText value="#{testGroupBean.question.text}"/>
+                </p:fieldset>
+
                 <p:panelGrid columns="3" style="position: relative;left:25%;right:25% " styleClass="ui-noborder">
 
                     <p:commandLink value="предыдущий вопрос" actionListener="#{testGroupBean.prevQ()}"
@@ -76,7 +80,17 @@
                     <p:commandLink value="следующий вопрос" actionListener="#{testGroupBean.nextQ()}"
                                    update="form"/>
                 </p:panelGrid>
-                <p:commandButton value="Закончить тест" style="position:relative;left: 80%" action="#{testGroupBean.finishTest}"/>
+
+
+                <p:commandButton value="Закончить тест" style="position:relative;left: 80%" action="#{testGroupBean.finishTest}">
+                    <p:confirm header="Confirmation" message="Закончить тест?"/>
+                </p:commandButton>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Да" type="button" styleClass="ui-confirmdialog-yes"/>
+                    <p:commandButton value="Нет" type="button" styleClass="ui-confirmdialog-no"/>
+                </p:confirmDialog>
+
             </p:panel>
         </h:form>
     </ui:composition>

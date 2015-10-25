@@ -38,6 +38,8 @@ public class TestGroupBean {
     private String                          result;
     private int                             testType;
     private Map<Integer, ArrayList<String>> testResult1;
+    private List<String>                    result1a;
+    private List<String>                    result1b;
 
     @PostConstruct
     private void init() {
@@ -52,15 +54,15 @@ public class TestGroupBean {
     //===M===
 
     public String finishTest() {
+        System.out.println("fin test");
         CalcTestResult c = new CalcTestResult();
         testResult1 = c.calcTestResult(testGroup);
-        result="";
-        for (String s:testResult1.get(1)){
-            result+=s;
+        result = "";
+        if (testType==1) {
+            result1a=testResult1.get(1);
+            result1b=testResult1.get(2);
         }
-        for (String s:testResult1.get(2)){
-            result+=s;
-        }
+
         return "result";
     }
 
@@ -130,7 +132,6 @@ public class TestGroupBean {
         this.user = user;
     }
 
-
     public List<TestGroup> getListTestG() {
         return listTestG;
     }
@@ -156,13 +157,6 @@ public class TestGroupBean {
     }
 
     public String getResult() {
-//        String(request.getParameter("Name").getBytes("ISO-8859-1"),"Cp1251");
-//        String str= null;
-//        try {
-//            str = new String(result.getBytes("Cp1251"));
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
         return result;
     }
 
@@ -192,5 +186,21 @@ public class TestGroupBean {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public List<String> getResult1a() {
+        return result1a;
+    }
+
+    public void setResult1a(List<String> result1a) {
+        this.result1a = result1a;
+    }
+
+    public List<String> getResult1b() {
+        return result1b;
+    }
+
+    public void setResult1b(List<String> result1b) {
+        this.result1b = result1b;
     }
 }

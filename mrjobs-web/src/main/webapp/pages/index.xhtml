@@ -2,7 +2,6 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
         'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'
-      xmlns:f='http://java.sun.com/jsf/core'
       xmlns:h='http://java.sun.com/jsf/html'
       xmlns:ui='http://java.sun.com/jsf/facelets'
       xmlns:p="http://primefaces.org/ui">
@@ -11,11 +10,15 @@
 
     <ui:composition template="/WEB-INF/pages/templates/common/common-layout.xhtml">
         <ui:define name="page-body">
+            <h:form>
+                <p:panel style="width: 80%; position:absolute;left:10%;">
+                    <h:outputText value="Выбор профессии – очень важный этап в жизни человека. Это может быть твоя первая профессия или в твоей жизни наступил этап сменить профессию на ту, которая более актуальна или больше тебе подходит. В любом случае, от того, насколько верно будет сделан выбор – будет зависеть успешность твоей карьеры и твоя удовлетворенность делом, которое ты будешь делать почти треть твоей жизни (8-часовый рабочий день занимает треть в твоих сутках).
+                                 Мы предлагаем тебе пройти несложные тесты, чтобы определить те сферы, в которых ты можешь добиться максимальных успехов"/>
+                    <br/>
 
-
-            <h:outputText value="первая страница. тут надо чтото написать"/>
-
-
+                    <p:commandLink value="Перейти к тесту 1" action="#{testGroupBean.goTest(1)}" ajax="false"/>
+                </p:panel>
+            </h:form>
         </ui:define>
     </ui:composition>
 
