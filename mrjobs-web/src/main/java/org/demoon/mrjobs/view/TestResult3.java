@@ -12,6 +12,7 @@ public class TestResult3 {
 
     final static private HashMap<Integer, Integer> dbr0 = new HashMap<>();
     final static private HashMap<Integer, Integer> dbr1 = new HashMap<>();
+    final static private HashMap<Integer, String>  dbn  = new HashMap<>();
 
     public TestResult3() {
         init_db();
@@ -51,6 +52,15 @@ public class TestResult3 {
         db2.put(5, new ArrayList<Integer>(Arrays.asList(4, 7)));
         db2.put(6, new ArrayList<Integer>(Arrays.asList(3, 6)));
         db2.put(7, new ArrayList<Integer>(Arrays.asList(23, 32)));
+
+        dbn.clear();
+        dbn.put(1, "Планирование ");
+        dbn.put(2, "Моделирование ");
+        dbn.put(3, "Программирование ");
+        dbn.put(4, "Оценивание результатов ");
+        dbn.put(5, "Гибкость ");
+        dbn.put(6, "Самостоятельность");
+        dbn.put(7, "Общий уровень саморегуляции ");
         makeDb();
     }
 
@@ -59,11 +69,11 @@ public class TestResult3 {
         dbr1.clear();
 
         for (int i = 1; i < 8; i++) {
-            for (Integer ans : db.get(0).get(i)) {
-                dbr0.put(i, ans);
+            for (Integer ans : db.get(i).get(0)) {
+                dbr0.put(ans, i);
             }
-            for (Integer ans : db.get(1).get(i)) {
-                dbr1.put(i, ans);
+            for (Integer ans : db.get(i).get(1)) {
+                dbr1.put(ans, i);
             }
 
         }
@@ -73,28 +83,29 @@ public class TestResult3 {
     public List<String> getResult(HashMap<Integer, Integer> hm) {
         List<String> result = new ArrayList<>();
         int r[] = {0, 0, 0, 0, 0, 0, 0};
-
-        for (int i = 0; i < 7; i++) {
-            result.add(null);
-        }
-
-
         for (Map.Entry entry : hm.entrySet()) {
 
             if ((int) entry.getValue() < 2) {
-                r[(dbr0.get(entry.getKey()))]++;
+
+                if (dbr0.get(entry.getKey()) != null) {
+                    r[dbr0.get(entry.getKey()) - 1]++;
+                }
 
             } else {
-                r[(dbr1.get(entry.getKey()))]++;
+                if ((dbr1.get(entry.getKey()) != null)) {
+                    r[dbr1.get(entry.getKey()) - 1]++;
+                }
             }
-
-
         }
         for (int i = 0; i < 7; i++) {
-            result.add(Integer.toString(r[i]));
+            if (db2.get(i + 1).get(0) >= r[i]) {
+                result.add(dbn.get(i + 1) + ": Низкий уровень");
+            } else if (db2.get(i + 1).get(0) < r[i] & r[i] <= db2.get(i + 1).get(1)) {
+                result.add(dbn.get(i + 1) + ": Средний уровень");
+            } else {
+                result.add(dbn.get(i + 1) + ": Высокий уровень");
+            }
         }
-
         return result;
-
     }
 }

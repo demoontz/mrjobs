@@ -68,7 +68,7 @@ public class CalcTestResult {
 
         for (Question q : testGroup.getTestAList().get(0).getQuestion()) {
             if (q.getCurentAnsverId() != null) {
-                inData.put(q.getId().intValue(), q.getCurentAnsverId().intValue());
+                inData.put(q.getId().intValue()-199, q.getCurentAnsverId().intValue());
             }
         }
 
