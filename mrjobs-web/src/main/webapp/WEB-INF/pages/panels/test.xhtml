@@ -49,7 +49,7 @@
                             </p:selectOneRadio>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==3}">
-                            <p:selectOneRadio layout="grid" columns="1">
+                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
                                 <f:selectItem itemValue="0" itemLabel="Верно"/>
                                 <f:selectItem itemValue="1" itemLabel="Пожалуй верно"/>
                                 <f:selectItem itemValue="2" itemLabel="Пожалуй неверно"/>

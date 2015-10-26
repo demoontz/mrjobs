@@ -37,9 +37,9 @@ public class TestGroupBean {
     private User                            user;
     private String                          result;
     private int                             testType;
-    private Map<Integer, ArrayList<String>> testResult1;
     private List<String>                    result1a;
     private List<String>                    result1b;
+    private List<String>                    result3;
 
     @PostConstruct
     private void init() {
@@ -56,14 +56,20 @@ public class TestGroupBean {
     public String finishTest() {
         System.out.println("fin test");
         CalcTestResult c = new CalcTestResult();
-        testResult1 = c.calcTestResult(testGroup);
         result = "";
-        if (testType==1) {
-            result1a=testResult1.get(1);
-            result1b=testResult1.get(2);
+        if (testType == 1) {
+            Map<Integer, ArrayList<String>> testResult = c.calcTest1(testGroup);
+            result1a = testResult.get(1);
+            result1b = testResult.get(2);
         }
-
-        return "result";
+//        if (testType == 2) {
+//            result3 = c.calcTest2(testGroup);
+//
+//        }
+        if (testType == 3) {
+            result3 = c.calcTest3(testGroup);;
+        }
+        return "result"+testType;
     }
 
 
@@ -80,7 +86,9 @@ public class TestGroupBean {
         System.out.println("ch test=" + t);
         testType = t;
         testGroup = listTestG.get(t - 1);
+        Collections.sort(testGroup.getTestAList());
         testA = testGroup.getTestAList().get(0);
+
         question = testA.getQuestion().get(0);
         return "test";
     }
@@ -202,5 +210,13 @@ public class TestGroupBean {
 
     public void setResult1b(List<String> result1b) {
         this.result1b = result1b;
+    }
+
+    public List<String> getResult3() {
+        return result3;
+    }
+
+    public void setResult3(List<String> result3) {
+        this.result3 = result3;
     }
 }

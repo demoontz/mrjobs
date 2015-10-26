@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+        'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:h='http://java.sun.com/jsf/html'
+      xmlns:ui='http://java.sun.com/jsf/facelets'
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+    <ui:composition template="/WEB-INF/pages/templates/common/common-layout.xhtml">
+
+        <ui:define name="page-body">
+            <h:form>
+                <p:panel style="width: 80%; position:absolute;left:10%;">
+
+
+                    Поздравляем! Вы успешно прошли тестирование. Перед вами два списка – профессии, к которым вы наиболее склонны и профессии, которые можете выполнять сейчас.
+                    Совпадения в обоих списках может гарантировать успешную карьеру, так как занятие любимым делом позволяет достичь в профессии наивысших результатов.
+                    Если совпадений в списках нет, то возможно, вы занимаетесь не тем делом, к которому вы максимально способны.
+                    Предлагаем вам продолжить исследовать ваши таланты и пройти следующий тест для уточнения сферы применения ваших врожденных способностей
+
+
+
+
+                    <br/>
+                    <p:commandLink value="Перейти к тесту 3" action="#{testGroupBean.goTest(3)}" ajax="false"/>
+
+                </p:panel>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
+</html>
