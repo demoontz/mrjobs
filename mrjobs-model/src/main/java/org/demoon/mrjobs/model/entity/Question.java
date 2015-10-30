@@ -15,6 +15,8 @@ public class Question
     @Column
     private String       text;
     @Column
+    private String       imgUrl;
+    @Column
     private String       descr;
     @OneToMany
     private List<Answer> answer;
@@ -80,5 +82,13 @@ public class Question
 
     public void setCurentAnsverId(Long curentAnsverId) {
         this.curentAnsverId = curentAnsverId;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

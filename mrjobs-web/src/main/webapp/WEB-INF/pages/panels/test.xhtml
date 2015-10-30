@@ -13,23 +13,25 @@
                 <p:fieldset legend="Правила теста:" toggleable="true" toggleSpeed="500" style="margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5">
 
-                        <h:outputText
-                                value="#{testGroupBean.testA.rule.text}"/>
+                        <h:outputText id="display" value="#{testGroupBean.testA.rule.text}" escape="false" />
+
+
                     </h:panelGrid>
                 </p:fieldset>
 
                 <p:fieldset id="fldSet" legend="Описание вопроса" toggleable="true" toggleSpeed="500"
                             style="margin-bottom:20px" rendered="#{testGroupBean.question.typeQ!=9}">
                     <h:panelGrid columns="2" cellpadding="5" >
-                        <h:outputText value="#{testGroupBean.testA.name}"/>
-                        <h:outputText value="#{testGroupBean.testA.descr}"/>
+                        <h:outputText value="#{testGroupBean.testA.name}" escape="false"/>
+                        <h:outputText value="#{testGroupBean.testA.descr}" escape="false"/>
                     </h:panelGrid>
                 </p:fieldset>
                 <p:fieldset rendered="#{testGroupBean.question.typeQ!=9}">
+                    <h:outputText value="#{testGroupBean.question.descr}" escape="false"/>
                     <p:panelGrid columns="2" styleClass="ui-noborder" >
 
                         <p:column headerText="Q" width="300">
-                            <h:outputText value="#{testGroupBean.question.text}"/>
+                            <h:outputText value="#{testGroupBean.question.text}" escape="false"/>
                         </p:column>
                         <p:column headerText="A" width="200" rendered="#{testGroupBean.question.typeQ==1}">
                             <p:selectOneRadio layout="grid" columns="1">
@@ -56,7 +58,16 @@
                                 <f:selectItem itemValue="3" itemLabel="Неверно"/>
                             </p:selectOneRadio>
                         </p:column>
+                        <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==4}">
 
+                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
+                                <f:selectItem itemValue="0" itemLabel="А"/>
+                                <f:selectItem itemValue="1" itemLabel="Б"/>
+                                <f:selectItem itemValue="2" itemLabel="В"/>
+                                <f:selectItem itemValue="3" itemLabel="Г"/>
+                                <f:selectItem itemValue="4" itemLabel="Д"/>
+                            </p:selectOneRadio>
+                        </p:column>
 
                     </p:panelGrid>
 

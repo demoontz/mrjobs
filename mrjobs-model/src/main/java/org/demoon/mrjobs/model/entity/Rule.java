@@ -18,6 +18,8 @@ public class Rule
     private String text;
     @Column
     private String descr;
+    @Column
+    private String imgUrl;
 
     @Override
     public Long getId() {
@@ -43,5 +45,13 @@ public class Rule
 
     public void setDescr(String descr) {
         this.descr = descr;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
