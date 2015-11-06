@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "questions")
 public class Question
-    extends GenEntity {
+    extends GenEntity implements Comparable<Question>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +23,12 @@ public class Question
     @Column
     private Long         typeQ;
     @Column
-    private int orderId;
-
+    private int          orderId;
+    @Column
+    private String       trueAnsver;
+    @Column
+    private String       ansverStr;
+    @Column
     private Long curentAnsverId;
 
 
@@ -90,5 +94,32 @@ public class Question
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getTrueAnsver() {
+        return trueAnsver;
+    }
+
+    public void setTrueAnsver(String trueAnsver) {
+        this.trueAnsver = trueAnsver;
+    }
+
+    public String getAnsverStr() {
+        return ansverStr;
+    }
+
+    public void setAnsverStr(String ansverStr) {
+        this.ansverStr = ansverStr;
+    }
+
+    @Override
+    public int compareTo(Question o) {
+        if (this.orderId < o.orderId) {
+            return -1;
+        }
+        if (this.orderId > o.orderId) {
+            return 1;
+        }
+        return 0;
     }
 }

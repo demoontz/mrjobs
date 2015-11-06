@@ -20,16 +20,16 @@ public class CalcTestResult {
         TestResult1 tr = new TestResult1();
 
         int r[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
+        int ii = 0;
         for (TestA testA : testGroup.getTestAList()) {
 
-            int i = 0;
+
             for (Question q : testA.getQuestion()) {
                 if (q.getCurentAnsverId() != null) {
-                    r[i] += q.getCurentAnsverId();
+                    r[ii] += q.getCurentAnsverId();
                 }
-                i++;
-            }
+
+            }ii++;
         }
 
 
@@ -55,10 +55,48 @@ public class CalcTestResult {
         return tr.getResult(result);
     }
 
-    public HashMap<Integer, Integer> calcTest2(TestGroup testGroup) {
+    public ArrayList<String> calcTest2(TestGroup testGroup, int age) {
+        TestResult2 tr2 = new TestResult2();
+        //calc raw data
+        int r[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        int i = 0;
+        for (TestA testA : testGroup.getTestAList()) {
+
+            for (Question q : testA.getQuestion()) {
+                switch (q.getTypeQ().intValue()) {
+                    case 1:
+                        if (q.getCurentAnsverId() != null && q.getCurentAnsverId().equals(q.getTrueAnsver())) {
+
+                            r[i]++;
+                            if (i == 3)r[i]++;
+
+                        }
+                        break;
+                    case 2:
+                        if (q.getAnsverStr() != null && q.getAnsverStr().equals(q.getTrueAnsver())) {
+                            r[i]++;
+                            if (i == 3) {
+                                r[i]++;
+                            }
+                        }
+
+                        break;
+                    case 4:
+                        if (q.getAnsverStr() != null && q.getAnsverStr().equals(q.getTrueAnsver())) {
+                            r[i]++;
+                            if (i == 3) {
+                                r[i]++;
+                            }
+                        }
+                        break;
+                }
 
 
-        return null;
+            }
+            i++;
+        }
+        //calc standart data
+        return tr2.getResult(r);
     }
 
     public List<String> calcTest3(TestGroup testGroup) {
@@ -68,7 +106,7 @@ public class CalcTestResult {
 
         for (Question q : testGroup.getTestAList().get(0).getQuestion()) {
             if (q.getCurentAnsverId() != null) {
-                inData.put(q.getId().intValue()-199, q.getCurentAnsverId().intValue());
+                inData.put(q.getId().intValue() - 199, q.getCurentAnsverId().intValue());
             }
         }
 

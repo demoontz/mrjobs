@@ -20,10 +20,10 @@
                 </p:fieldset>
 
                 <p:fieldset id="fldSet" legend="Описание вопроса" toggleable="true" toggleSpeed="500"
-                            style="margin-bottom:20px" rendered="#{testGroupBean.question.typeQ!=9}">
+                            style="margin-bottom:20px" rendered="#{testGroupBean.question.typeQ!=9 and testGroupBean.testType!=3}">
                     <h:panelGrid columns="2" cellpadding="5" >
-                        <h:outputText value="#{testGroupBean.testA.name}" escape="false"/>
-                        <h:outputText value="#{testGroupBean.testA.descr}" escape="false"/>
+                        <h:outputText value="#{testGroupBean.testA.name}" escape="false"/> <br/>
+                        <h:outputText value="#{testGroupBean.testA.descr}" escape="false" />
                     </h:panelGrid>
                 </p:fieldset>
                 <p:fieldset rendered="#{testGroupBean.question.typeQ!=9}">
@@ -40,14 +40,14 @@
                             </p:selectOneRadio>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==2}">
-                            <p:inputText/>
+                            <p:inputText value="#{testGroupBean.question.ansverStr}"/>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==0}">
                             <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
-                                <f:selectItem itemValue="0" itemLabel="0"/>
-                                <f:selectItem itemValue="1" itemLabel="1"/>
-                                <f:selectItem itemValue="2" itemLabel="2"/>
-                                <f:selectItem itemValue="3" itemLabel="3"/>
+                                <f:selectItem itemValue="0" itemLabel="вовсе нет"/>
+                                <f:selectItem itemValue="1" itemLabel="пожалуй так"/>
+                                <f:selectItem itemValue="2" itemLabel="верно"/>
+                                <f:selectItem itemValue="3" itemLabel="совершенно верно"/>
                             </p:selectOneRadio>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==3}">
@@ -68,15 +68,24 @@
                                 <f:selectItem itemValue="4" itemLabel="Д"/>
                             </p:selectOneRadio>
                         </p:column>
+                        <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==5}">
 
+                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
+                                <f:selectItem itemValue="0" itemLabel="цветок"/>
+                                <f:selectItem itemValue="1" itemLabel="инструмент"/>
+                                <f:selectItem itemValue="2" itemLabel="птица"/>
+                                <f:selectItem itemValue="3" itemLabel="произведение искусства"/>
+                                <f:selectItem itemValue="4" itemLabel="животное"/>
+                            </p:selectOneRadio>
+                        </p:column>
                     </p:panelGrid>
 
 
 
                 </p:fieldset>
 
-                <p:fieldset rendered="#{testGroupBean.question.typeQ==9}">
-                    <h:outputText value="#{testGroupBean.question.text}"/>
+                <p:fieldset rendered="#{testGroupBean.question.typeQ==9}" >
+                    <h:outputText value="#{testGroupBean.question.text}" rendered="#{testGroupBean.tableVisible}" escape="false"/>
                 </p:fieldset>
 
                 <p:fieldset rendered="#{testGroupBean.question.typeQ==8}">

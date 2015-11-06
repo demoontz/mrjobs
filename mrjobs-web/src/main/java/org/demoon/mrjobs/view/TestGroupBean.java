@@ -13,7 +13,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by demoon on 22.09.2015.
@@ -29,29 +32,40 @@ public class TestGroupBean {
     private UserDAO userDAO;
 
 
-    private List<TestA>                     listTestA;
-    private List<TestGroup>                 listTestG;
-    private TestA                           testA;
-    private TestGroup                       testGroup;
-    private Question                        question;
-    private User                            user;
-    private String                          result;
-    private int                             testType;
-    private List<String>                    result1a;
-    private List<String>                    result1b;
-    private List<String>                    result3;
+    private List<TestA>     listTestA;
+    private List<TestGroup> listTestG;
+    private TestA           testA;
+    private TestGroup       testGroup;
+    private Question        question;
+    private User            user;
+    private String          result;
+    private int             testType;
+    private List<String>    result1a;
+    private List<String>    result1b;
+    private List<String>    result2;
+    private List<String>    result3;
+    private int             age;
+    private boolean tableVisible = true;
 
     @PostConstruct
     private void init() {
         System.out.println("init");
         listTestG = testGroupDAO.getAllOrderId();
         testGroup = listTestG.get(0);
-        Collections.sort(testGroup.getTestAList());
+        sortAll();
         testA = testGroup.getTestAList().get(0);
         question = testA.getQuestion().get(0);
 
     }
+
     //===M===
+    private void sortAll() {
+
+        Collections.sort(testGroup.getTestAList());
+        for (TestA ta : testGroup.getTestAList()) {
+            Collections.sort(ta.getQuestion());
+        }
+    }
 
     public String finishTest() {
         System.out.println("fin test");
@@ -62,14 +76,15 @@ public class TestGroupBean {
             result1a = testResult.get(1);
             result1b = testResult.get(2);
         }
-//        if (testType == 2) {
-//            result3 = c.calcTest2(testGroup);
-//
-//        }
-        if (testType == 3) {
-            result3 = c.calcTest3(testGroup);;
+        if (testType == 2) {
+            result2 = c.calcTest2(testGroup, 30);
+
         }
-        return "result"+testType;
+        if (testType == 3) {
+            result3 = c.calcTest3(testGroup);
+            ;
+        }
+        return "result" + testType;
     }
 
 
@@ -86,22 +101,20 @@ public class TestGroupBean {
         System.out.println("ch test=" + t);
         testType = t;
         testGroup = listTestG.get(t - 1);
-        Collections.sort(testGroup.getTestAList());
+        sortAll();
         testA = testGroup.getTestAList().get(0);
-
         question = testA.getQuestion().get(0);
         return "test";
     }
 
     public void prevQ() {
         System.out.println("prev q");
-        if (testA.getQuestion().indexOf(question) > 0)
-        {
+        if (testA.getQuestion().indexOf(question) > 0) {
             question = testA.getQuestion().get(testA.getQuestion().indexOf(question) - 1);
         } else {
-            if (testGroup.getTestAList().indexOf(testA)>0){
-                testA=testGroup.getTestAList().get(testGroup.getTestAList().indexOf(testA)-1);
-                question = testA.getQuestion().get(testA.getQuestion().size()-1);
+            if (testGroup.getTestAList().indexOf(testA) > 0) {
+                testA = testGroup.getTestAList().get(testGroup.getTestAList().indexOf(testA) - 1);
+                question = testA.getQuestion().get(testA.getQuestion().size() - 1);
             }
 
         }
@@ -111,12 +124,12 @@ public class TestGroupBean {
 
     public void nextQ() {
         System.out.println("next q");
-        if ((testA.getQuestion().indexOf(question) + 1) < testA.getQuestion().size())
-        {
+        if (question.getId()==576)tableVisible = false;
+        if ((testA.getQuestion().indexOf(question) + 1) < testA.getQuestion().size()) {
             question = testA.getQuestion().get(testA.getQuestion().indexOf(question) + 1);
         } else {
-            if (testGroup.getTestAList().indexOf(testA)+1<testGroup.getTestAList().size()){
-                testA=testGroup.getTestAList().get(testGroup.getTestAList().indexOf(testA)+1);
+            if (testGroup.getTestAList().indexOf(testA) + 1 < testGroup.getTestAList().size()) {
+                testA = testGroup.getTestAList().get(testGroup.getTestAList().indexOf(testA) + 1);
                 question = testA.getQuestion().get(0);
             }
 
@@ -218,5 +231,21 @@ public class TestGroupBean {
 
     public void setResult3(List<String> result3) {
         this.result3 = result3;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isTableVisible() {
+        return tableVisible;
+    }
+
+    public void setTableVisible(boolean tableVisible) {
+        this.tableVisible = tableVisible;
     }
 }
