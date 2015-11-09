@@ -248,4 +248,12 @@ public class TestGroupBean {
     public void setTableVisible(boolean tableVisible) {
         this.tableVisible = tableVisible;
     }
+
+    public List<String> getResult2() {
+        return result2;
+    }
+
+    public void setResult2(List<String> result2) {
+        this.result2 = result2;
+    }
 }
