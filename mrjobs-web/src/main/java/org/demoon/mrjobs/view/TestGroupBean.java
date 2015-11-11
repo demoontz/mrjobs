@@ -78,12 +78,14 @@ public class TestGroupBean {
         }
         if (testType == 2) {
             result2 = c.calcTest2(testGroup, 30);
+            if (result2==null)return "end1";
 
         }
         if (testType == 3) {
             result3 = c.calcTest3(testGroup);
             ;
         }
+
         return "result" + testType;
     }
 
