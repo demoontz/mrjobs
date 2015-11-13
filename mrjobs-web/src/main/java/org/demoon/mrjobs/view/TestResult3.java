@@ -80,8 +80,8 @@ public class TestResult3 {
 
     }
 
-    public List<String> getResult(HashMap<Integer, Integer> hm) {
-        List<String> result = new ArrayList<>();
+    public HashMap<String, Integer> getResult(HashMap<Integer, Integer> hm) {
+        HashMap<String, Integer> result = new HashMap<>();
         int r[] = {0, 0, 0, 0, 0, 0, 0};
         for (Map.Entry entry : hm.entrySet()) {
 
@@ -99,11 +99,11 @@ public class TestResult3 {
         }
         for (int i = 0; i < 7; i++) {
             if (db2.get(i + 1).get(0) >= r[i]) {
-                result.add(dbn.get(i + 1) + ": Низкий уровень");
+                result.put(dbn.get(i + 1), 1);
             } else if (db2.get(i + 1).get(0) < r[i] & r[i] <= db2.get(i + 1).get(1)) {
-                result.add(dbn.get(i + 1) + ": Средний уровень");
+                result.put(dbn.get(i + 1) ,2);
             } else {
-                result.add(dbn.get(i + 1) + ": Высокий уровень");
+                result.put(dbn.get(i + 1) , 3);
             }
         }
         return result;

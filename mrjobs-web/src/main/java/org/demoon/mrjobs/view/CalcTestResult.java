@@ -7,7 +7,6 @@ import org.demoon.mrjobs.model.entity.TestGroup;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -55,7 +54,7 @@ public class CalcTestResult {
         return tr.getResult(result);
     }
 
-    public ArrayList<String> calcTest2(TestGroup testGroup, int age) {
+    public HashMap<Integer,ArrayList<? extends Object>> calcTest2(TestGroup testGroup, int age) {
         TestResult2 tr2 = new TestResult2();
         //calc raw data
         int r[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -99,7 +98,7 @@ public class CalcTestResult {
         return tr2.getResult(r);
     }
 
-    public List<String> calcTest3(TestGroup testGroup) {
+    public HashMap<String, Integer> calcTest3(TestGroup testGroup) {
         HashMap<Integer, Integer> inData = new HashMap<>();
         TestResult3 tr = new TestResult3();
 
