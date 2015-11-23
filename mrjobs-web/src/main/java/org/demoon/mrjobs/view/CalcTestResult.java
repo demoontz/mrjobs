@@ -22,28 +22,33 @@ public class CalcTestResult {
         int ii = 0;
         for (TestA testA : testGroup.getTestAList()) {
 
+            if (testA.getId()!=25 & testA.getId()!=26){
+
 
             for (Question q : testA.getQuestion()) {
                 if (q.getCurentAnsverId() != null) {
                     r[ii] += q.getCurentAnsverId();
                 }
 
-            }ii++;
+            }ii++;}
         }
 
 
         HashMap<Integer, Integer> result = new HashMap<>();
 
         for (int i = 0; i < 2; i++) {
+
             int r1max = i * 7;
+
             for (int j = 0; j < 4; j++) {
                 if (r[r1max] < r[i * 7 + j + 1]) {
                     r1max = i * 7 + j + 1;
                 }
             }
-            result.put(i * 2, r1max - i * 7);
 
-            if (r[5 + i * 7] < r[6 + i * 7]) {
+            result.put(i * 2, r1max - i * 7+1);
+
+            if (r[5 + i * 7] > r[6 + i * 7]) {
                 result.put(i * 2 + 1, 0);
             } else {
                 result.put(i * 2 + 1, 1);
@@ -51,6 +56,7 @@ public class CalcTestResult {
 
 
         }
+
         return tr.getResult(result);
     }
 

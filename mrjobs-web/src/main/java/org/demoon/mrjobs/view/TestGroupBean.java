@@ -159,8 +159,8 @@ public class TestGroupBean {
         xAxis.setTickAngle(-10);
         Axis yAxis = chart2.getAxis(AxisType.Y);
         yAxis.setLabel("Баллы");
-        yAxis.setMin(0);
-        yAxis.setMax(20);
+        yAxis.setMin(60);
+        yAxis.setMax(160);
 
     }
 
