@@ -44,6 +44,7 @@ public class TestGroupBean {
     private List<String>                                  result3;
     private HashMap<Integer, ArrayList<? extends Object>> result2hm;
     private HashMap<String, Integer>                      result3hm;
+    private String userEmail=null;
 
     private int age;
     private boolean tableVisible = true;
@@ -148,6 +149,8 @@ public class TestGroupBean {
         }
     }
 
+
+//graph
     private void createLineModels2() {
 
         chart2 = initCategoryModel2();

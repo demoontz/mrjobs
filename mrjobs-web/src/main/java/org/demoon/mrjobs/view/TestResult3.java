@@ -10,8 +10,8 @@ public class TestResult3 {
     final static private HashMap<Integer, HashMap<Integer, ArrayList<Integer>>> db  = new HashMap<>();
     final static private HashMap<Integer, ArrayList<Integer>>                   db2 = new HashMap<>();
 
-    final static private HashMap<Integer, Integer> dbr0 = new HashMap<>();
-    final static private HashMap<Integer, Integer> dbr1 = new HashMap<>();
+    final static private HashMap<Integer, List<Integer>> dbr0 = new HashMap<>();
+    final static private HashMap<Integer, List<Integer>> dbr1 = new HashMap<>();
     final static private HashMap<Integer, String>  dbn  = new HashMap<>();
 
     public TestResult3() {
@@ -70,10 +70,14 @@ public class TestResult3 {
 
         for (int i = 1; i < 8; i++) {
             for (Integer ans : db.get(i).get(0)) {
-                dbr0.put(ans, i);
+                if (dbr0.get(ans)==null)dbr0.put(ans, new ArrayList<Integer>(Arrays.asList(i)));
+                else dbr0.get(ans).add( i);
             }
+
             for (Integer ans : db.get(i).get(1)) {
-                dbr1.put(ans, i);
+                if (dbr1.get(ans)==null)dbr1.put(ans, new ArrayList<Integer>(Arrays.asList(i)));
+                else dbr1.get(ans).add( i);
+
             }
 
         }
@@ -84,19 +88,22 @@ public class TestResult3 {
         HashMap<String, Integer> result = new HashMap<>();
         int r[] = {0, 0, 0, 0, 0, 0, 0};
         for (Map.Entry entry : hm.entrySet()) {
-
             if ((int) entry.getValue() < 2) {
-
                 if (dbr0.get(entry.getKey()) != null) {
-                    r[dbr0.get(entry.getKey()) - 1]++;
-                }
+                    for (Integer ans : dbr0.get(entry.getKey())) {
+                        r[ans - 1]++;
 
+                    }
+                }
             } else {
-                if ((dbr1.get(entry.getKey()) != null)) {
-                    r[dbr1.get(entry.getKey()) - 1]++;
+                if (dbr1.get(entry.getKey()) != null) {
+                    for (Integer ans : dbr1.get(entry.getKey())) {
+                        r[ans - 1]++;
+                    }
                 }
             }
         }
+
         for (int i = 0; i < 7; i++) {
             if (db2.get(i + 1).get(0) >= r[i]) {
                 result.put(dbn.get(i + 1), 1);

@@ -34,16 +34,16 @@
                             <h:outputText value="#{testGroupBean.question.text}" escape="false"/>
                         </p:column>
                         <p:column headerText="A" width="200" rendered="#{testGroupBean.question.typeQ==1}">
-                            <p:selectOneRadio layout="grid" columns="1">
+                            <p:selectOneRadio layout="grid" columns="1" required="true">
                                 <f:selectItems value="#{testGroupBean.question.answer}" var="c" itemLabel="#{c.text}"
                                                itemValue="#{c}"/>
                             </p:selectOneRadio>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==2}">
-                            <p:inputText value="#{testGroupBean.question.ansverStr}"/>
+                            <p:inputText value="#{testGroupBean.question.ansverStr}" required="true"/>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==0}">
-                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
+                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}" required="true">
                                 <f:selectItem itemValue="0" itemLabel="вовсе нет"/>
                                 <f:selectItem itemValue="1" itemLabel="пожалуй так"/>
                                 <f:selectItem itemValue="2" itemLabel="верно"/>
@@ -51,7 +51,7 @@
                             </p:selectOneRadio>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==3}">
-                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
+                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}" required="true">
                                 <f:selectItem itemValue="0" itemLabel="Верно"/>
                                 <f:selectItem itemValue="1" itemLabel="Пожалуй верно"/>
                                 <f:selectItem itemValue="2" itemLabel="Пожалуй неверно"/>
@@ -60,7 +60,7 @@
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==4}">
 
-                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
+                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}" required="true">
                                 <f:selectItem itemValue="0" itemLabel="А"/>
                                 <f:selectItem itemValue="1" itemLabel="Б"/>
                                 <f:selectItem itemValue="2" itemLabel="В"/>
@@ -70,7 +70,7 @@
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==5}">
 
-                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}">
+                            <p:selectOneRadio layout="grid" columns="1" value="#{testGroupBean.question.curentAnsverId}" required="true">
                                 <f:selectItem itemValue="0" itemLabel="цветок"/>
                                 <f:selectItem itemValue="1" itemLabel="инструмент"/>
                                 <f:selectItem itemValue="2" itemLabel="птица"/>
