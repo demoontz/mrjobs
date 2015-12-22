@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "answers")
-public class Answer extends GenEntity{
+public class Answer extends GenEntity implements Comparable<Answer>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -56,5 +56,16 @@ public class Answer extends GenEntity{
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    @Override
+    public int compareTo(Answer o) {
+        if (this.orderId < o.orderId) {
+            return -1;
+        }
+        if (this.orderId > o.orderId) {
+            return 1;
+        }
+        return 0;
     }
 }

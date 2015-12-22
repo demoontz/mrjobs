@@ -70,6 +70,12 @@ public class TestGroupBean {
         Collections.sort(testGroup.getTestAList());
         for (TestA ta : testGroup.getTestAList()) {
             Collections.sort(ta.getQuestion());
+            for(Question q: ta.getQuestion())
+            {
+                if (q.getAnswer()!=null)
+                    Collections.sort(q.getAnswer());
+            }
+
         }
     }
 
