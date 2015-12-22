@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+        'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:h='http://java.sun.com/jsf/html'
+      xmlns:ui='http://java.sun.com/jsf/facelets'
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+    <ui:composition template="/WEB-INF/pages/templates/common/common-layout.xhtml">
+        <ui:define name="page-body">
+            <p:panel style="width: 80%; position:absolute;left:10%;">
+                тест пройден: дата<br/>
+                Отчет способностей<br/>
+                #{testGroupBean.user.name}<br/>
+
+                Может добиться выдающихся результатов в профессиях<br/>
+                Тест "Я хочу"
+                <p:dataList value="#{testGroupBean.result1a}" var="reslta">
+                    #{reslta}
+                </p:dataList>
+
+
+                Тест "Я могу"
+                <p:dataList value="#{testGroupBean.result1b}" var="resltb">
+                    #{resltb}
+                </p:dataList>
+                <br/><br/><br/>
+
+                <p:chart type="line" model="#{testGroupBean.chart2}" style="height:300px;"/>
+                <br/>
+                Преимуществопо блокам:<br/>
+                1, 2, 3, 4 и 9<br/>
+                Тип мышления:Вербалъно-гуманитарный вербальный интеллект, вербальные способности.<br/>
+                Рекомендации кандидату:Можно ориентироваться на общественные, гуманитарные виды деятельности, науки, изучение иностранных языков, а также те виды практической деятельности, которые используют вербальное мышление.<br/>
+                <br/>
+                5,6<br/>
+                Тип мышления:физико-математические способности.<br/>
+                Рекомендации кандидату:Рекомендовано ориентироваться на сферы, где будет задействовано вычисление, прогнозирование, построение причинно-следственных связей<br/>
+                <br/>
+                7,9<br/>
+                Тип мышления: Пространственно-технический профиль<br/>
+                Рекомендации кандидату:Отмечается техническая одаренность. Рекомендовано применение своих способностей в работе с проектированием, техникой, механизмами, аппаратами<br/>
+                <br/>
+                5, 6, 7 и 8<br/>
+                Тип мышления: Естественнонаучный профиль<br/>
+                Рекомендации кандидату:Есть склонность к занятию естественными науками (химия, биология, геология)<br/>
+
+                Однородная структура (приблизительно одинаковые показатели по всем субтестам)<br/>
+                Тип мышления: Социалъно-экономический профиль<br/>
+                Рекомендации кандидату: свидетельствуют об ориентации и способностях в социально-экономической области.<br/>
+                Возможная сфера деятельности и профессии:<br/>
+                экономика, социология, психология, юриспруденция, дизайн<br/>
+                <br/><br/>
+
+
+                Тест 3
+                <p:chart type="line" model="#{testGroupBean.chart3}" style="height:300px;"/>
+
+                <p:dataList value="#{testGroupBean.result3}" var="reslt">
+                    #{reslt}
+                </p:dataList>
+
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

@@ -3,6 +3,7 @@ package org.demoon.mrjobs.model.entity;
 import org.demoon.mrjobs.model.enums.Role;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +24,10 @@ public class User
     private String         pass;
     @Column
     private Role           role;
+    @Column
+    private String name;
+    @Column
+    private Date bdate;
     @OneToMany
     private List<PassTest> passTestList;
 
@@ -67,5 +72,21 @@ public class User
 
     public void setPassTestList(List<PassTest> passTestList) {
         this.passTestList = passTestList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getBdate() {
+        return bdate;
+    }
+
+    public void setBdate(Date bdate) {
+        this.bdate = bdate;
     }
 }
