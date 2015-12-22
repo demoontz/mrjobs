@@ -11,6 +11,8 @@ import org.primefaces.model.chart.*;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.util.*;
 
@@ -105,8 +107,8 @@ public class TestGroupBean {
 
     public User getCurrentUser() {
 
-//        ExternalContext context = FacesContext.getCurrentInstance()
-//                                              .getExternalContext();
+        ExternalContext context = FacesContext.getCurrentInstance()
+                                              .getExternalContext();
 //        String login = context.getUserPrincipal().getName();
 //        user = userDAO.findUserByLogin(login);
         return new User();

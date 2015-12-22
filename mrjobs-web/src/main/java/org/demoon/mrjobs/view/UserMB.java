@@ -11,9 +11,10 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 @SessionScoped
-@ManagedBean
+@ManagedBean(name = "usermb")
 public class UserMB {
-    private User user;
+
+    private User user=new User();
 
     @Inject
     private UserFacade userFacade;
@@ -48,8 +49,10 @@ public class UserMB {
     }
 
     // ---------------------getters setters
-
     public User getUser() {
+        if (user == null)
+            user = new User();
+
         return user;
     }
 
