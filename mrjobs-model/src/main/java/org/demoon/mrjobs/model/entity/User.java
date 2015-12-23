@@ -1,6 +1,8 @@
 package org.demoon.mrjobs.model.entity;
 
-import org.demoon.mrjobs.model.enums.Role;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,76 +19,32 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @Getter @Setter
     private Long           id;
-    @Column
+    @Getter @Setter
     private String         email;
-    @Column
+    @Getter @Setter
     private String         pass;
-    @Column
-    private Role           role;
-    @Column
+    @Getter @Setter
+    private String           role;
+    @Getter @Setter
     private String name;
-    @Column
+    @Getter @Setter
     private Date bdate;
     @OneToMany
+    @Getter @Setter
     private List<PassTest> passTestList;
 
-
     @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public List<PassTest> getPassTestList() {
-        return passTestList;
-    }
-
-    public void setPassTestList(List<PassTest> passTestList) {
-        this.passTestList = passTestList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getBdate() {
-        return bdate;
-    }
-
-    public void setBdate(Date bdate) {
-        this.bdate = bdate;
+    public String toString() {
+        return "User{" +
+            "id=" + id +
+            ", email='" + email + '\'' +
+            ", pass='" + pass + '\'' +
+            ", role='" + role + '\'' +
+            ", name='" + name + '\'' +
+            ", bdate=" + bdate +
+            ", passTestList=" + passTestList +
+            '}';
     }
 }

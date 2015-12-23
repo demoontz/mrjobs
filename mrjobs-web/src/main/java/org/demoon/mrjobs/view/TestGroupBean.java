@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -44,7 +45,7 @@ public class TestGroupBean {
     private List<String>                                  result3;
     private HashMap<Integer, ArrayList<? extends Object>> result2hm;
     private HashMap<String, Integer>                      result3hm;
-    private String userEmail=null;
+    private String userEmail = null;
 
     private int age;
     private boolean tableVisible = true;
@@ -70,10 +71,10 @@ public class TestGroupBean {
         Collections.sort(testGroup.getTestAList());
         for (TestA ta : testGroup.getTestAList()) {
             Collections.sort(ta.getQuestion());
-            for(Question q: ta.getQuestion())
-            {
-                if (q.getAnswer()!=null)
+            for (Question q : ta.getQuestion()) {
+                if (q.getAnswer() != null) {
                     Collections.sort(q.getAnswer());
+                }
             }
 
         }
@@ -106,12 +107,19 @@ public class TestGroupBean {
 
 
     public User getCurrentUser() {
+        String login;
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        if (context.getUserPrincipal() != null) {
+            login = context.getUserPrincipal().getName();
+            user = userDAO.findUserByLogin(login);
+        }
+        System.out.println("cur=" + user);
+        return user;
+    }
 
-        ExternalContext context = FacesContext.getCurrentInstance()
-                                              .getExternalContext();
-//        String login = context.getUserPrincipal().getName();
-//        user = userDAO.findUserByLogin(login);
-        return new User();
+    private HttpServletRequest getRequest() {
+        return (HttpServletRequest) FacesContext.getCurrentInstance()
+                                                .getExternalContext().getRequest();
     }
 
     public String goTest(int t) {
@@ -121,7 +129,7 @@ public class TestGroupBean {
         sortAll();
         testA = testGroup.getTestAList().get(0);
         question = testA.getQuestion().get(0);
-        return "test";
+        return "/protected/test";
     }
 
     public void prevQ() {
@@ -154,11 +162,12 @@ public class TestGroupBean {
 
         }
     }
-    public String goReport(){
+
+    public String goReport() {
         return "report";
     }
 
-//graph
+    //graph
     private void createLineModels2() {
 
         chart2 = initCategoryModel2();
@@ -247,6 +256,8 @@ public class TestGroupBean {
     public User getUser() {
 
         if (user == null) {
+            user = getCurrentUser();
+        } else if (user.getId() == null) {
             user = getCurrentUser();
         }
         if (user == null) {

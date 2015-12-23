@@ -8,7 +8,7 @@
 
 <h:body>
 
-    <ui:composition template="/WEB-INF/pages/templates/common/common-layout.xhtml">
+    <ui:composition template="/WEB-INF/pages/templates/common-layout.xhtml">
         <ui:define name="page-body">
             <h:form>
                 <p:panel style="width: 80%; position:absolute;left:10%;">
@@ -16,7 +16,7 @@
                                  Мы предлагаем тебе пройти несложные тесты, чтобы определить те сферы, в которых ты можешь добиться максимальных успехов"/>
                     <br/>
 
-                    <p:commandLink value="Перейти к тесту 1" action="#{testGroupBean.goTest(1)}" ajax="false"/>
+                    <p:link value="Перейти к тестированию"  outcome="/protected/tests"/>
                 </p:panel>
             </h:form>
         </ui:define>

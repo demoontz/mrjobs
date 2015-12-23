@@ -8,7 +8,7 @@
 
 <h:body>
 
-	<ui:composition template="/WEB-INF/pages/templates/common/common-layout.xhtml">
+	<ui:composition template="/WEB-INF/pages/templates/common-layout.xhtml">
 		<ui:define name="page-body">
 			<p:panel style="width: 80%; position:absolute;left:10%;">
 
@@ -16,7 +16,7 @@
 					<h:form id="form">
 						<p:panel >
 							<p:panelGrid columns="2">
-								<h:outputLabel for="email" value="Логин *" />
+								<h:outputLabel for="email" value="Почта *" />
 								<p:inputText id="email" value="#{usermb.user.email}"  styleClass="inputfld" />
 								<h:outputLabel for="password1" value="Пароль *" />
 								<p:password id="password1" value="#{usermb.user.pass}" match="password2" required="true" styleClass="inputfld" redisplay="true" />
@@ -31,7 +31,7 @@
 							</p:panelGrid>
 						</p:panel>
 						<p:row>
-							<p:commandButton value="зарегацца" actionListener="#{usermb.saveUser}" update="growl" />
+							<p:commandButton value="Регистрация" actionListener="#{usermb.saveUser}" update="growl" />
 						</p:row>
 					</h:form>
 

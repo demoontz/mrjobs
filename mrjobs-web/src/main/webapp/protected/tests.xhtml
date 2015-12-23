@@ -8,10 +8,11 @@
 
 <h:body>
 
-    <ui:composition template="/WEB-INF/pages/templates/common/common-layout.xhtml">
+    <ui:composition template="/WEB-INF/pages/templates/common-layout.xhtml">
 
         <ui:define name="page-body">
             <h:form>
+                <p:panel style="width: 80%; position:absolute;left:10%;">
                 <p:dataScroller value="#{testGroupBean.listTestG}" var="testG" chunkSize="10">
                     <f:facet name="header">
                         Доступные тесты:
@@ -26,6 +27,7 @@
                         <p:commandButton value="Начать! " action="#{testGroupBean.goTest(testG.id)}" ajax="false"/>
                     </p:fieldset>
                 </p:dataScroller>
+                </p:panel>
 
 
             </h:form>

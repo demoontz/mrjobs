@@ -50,11 +50,12 @@
             <p:column>
                 <p:panelGrid>
                     <p:row>
-                        <p:column><p:link value="Рега" outcome="registration"/></p:column>
+                        <p:column><p:link value="Регистрация" outcome="/registration"/></p:column>
                     </p:row>
                     <p:row>
-                    <p:column><p:link value="Вход" outcome="login"  /></p:column>
-                    <!--<p:column><p:commandLink value="Выход" action="#{usermb.logOut}"  rendered="#{testGroupBean.user.id!=0}"/></p:column>-->
+                        <p:outputLabel value="Hello #{testGroupBean.user.name}"  rendered="#{testGroupBean.user.id!=null}"/>
+                    <p:column><p:link value="Вход" outcome="/login" rendered="#{testGroupBean.user.id==null}" /></p:column>
+                    <p:column><p:commandLink value="Выход" action="#{usermb.logOut}"  rendered="#{testGroupBean.user.id!=null}"/></p:column>
                 </p:row>
                 </p:panelGrid>
             </p:column>
