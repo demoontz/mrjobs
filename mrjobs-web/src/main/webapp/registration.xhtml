@@ -24,14 +24,14 @@
 								<p:password id="password2" value="#{usermb.user.pass}" required="true" styleClass="inputfld" redisplay="true" />
 								<h:outputLabel for="lastname" value="Имя Фамилия *" />
 								<p:inputText id="lastname" value="#{usermb.user.name}" required="true"  styleClass="inputfld" />
-								<h:outputLabel for="bdate" value="День рождения" />
+								<h:outputLabel for="bdate" value="Дата рождения" />
 								<p:calendar id="bdate" value="#{usermb.user.bdate}" navigator="true" showOn="button" pattern="dd.MM" >
 									<f:convertDateTime pattern="dd.MM" />
 								</p:calendar>
 							</p:panelGrid>
 						</p:panel>
 						<p:row>
-							<p:commandButton value="Регистрация" actionListener="#{usermb.saveUser}" update="growl" />
+							<p:commandButton value="Регистрация" actionListener="#{usermb.saveUser}" update="growl"  />
 						</p:row>
 					</h:form>
 

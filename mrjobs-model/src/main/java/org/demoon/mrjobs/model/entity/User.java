@@ -22,6 +22,7 @@ public class User
     @Getter @Setter
     private Long           id;
     @Getter @Setter
+    @Column(unique = true)
     private String         email;
     @Getter @Setter
     private String         pass;
@@ -31,7 +32,7 @@ public class User
     private String name;
     @Getter @Setter
     private Date bdate;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     @Getter @Setter
     private List<PassTest> passTestList;
 

@@ -42,19 +42,18 @@ public class UserMB {
         if (user.getId() == null) {
             user.setRole("USER");
             userFacade.create(user);
-            message("рега ок");
+            message("успешно");
 
         } else {
             userFacade.update(user);
             message("сохранен");
         }
-
     }
 
 
     public void message(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Achtung!", message));
+        context.addMessage(null, new FacesMessage("Регистрация:", message));
     }
 
     // ---------------------getters setters

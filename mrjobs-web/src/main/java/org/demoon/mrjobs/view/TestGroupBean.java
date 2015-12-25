@@ -1,9 +1,7 @@
 package org.demoon.mrjobs.view;
 
-import org.demoon.mrjobs.model.entity.Question;
-import org.demoon.mrjobs.model.entity.TestA;
-import org.demoon.mrjobs.model.entity.TestGroup;
-import org.demoon.mrjobs.model.entity.User;
+import lombok.Getter;
+import org.demoon.mrjobs.model.entity.*;
 import org.demoon.mrjobs.persistence.service.TestGroupDAO;
 import org.demoon.mrjobs.persistence.service.UserDAO;
 import org.primefaces.model.chart.*;
@@ -14,7 +12,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -45,7 +42,8 @@ public class TestGroupBean {
     private List<String>                                  result3;
     private HashMap<Integer, ArrayList<? extends Object>> result2hm;
     private HashMap<String, Integer>                      result3hm;
-    private String userEmail = null;
+@Getter
+private boolean[] testf={true,false,false,false};
 
     private int age;
     private boolean tableVisible = true;
@@ -58,6 +56,7 @@ public class TestGroupBean {
         System.out.println("init");
         listTestG = testGroupDAO.getAllOrderId();
         testGroup = listTestG.get(0);
+
         sortAll();
         testA = testGroup.getTestAList().get(0);
         question = testA.getQuestion().get(0);
@@ -81,6 +80,9 @@ public class TestGroupBean {
     }
 
     public String finishTest() {
+
+
+
         System.out.println("fin test");
         CalcTestResult c = new CalcTestResult();
         result = "";
@@ -88,6 +90,8 @@ public class TestGroupBean {
             Map<Integer, ArrayList<String>> testResult = c.calcTest1(testGroup);
             result1a = testResult.get(1);
             result1b = testResult.get(2);
+            saveUserTest1(testGroup,result1a,result1b);
+            testf[1]=true;
         }
         if (testType == 2) {
             result2hm = c.calcTest2(testGroup, 30);
@@ -95,14 +99,87 @@ public class TestGroupBean {
 //                return "end1";
 //            }
             createLineModels2();
-
+            saveUserTest2(testGroup,result2);
+            testf[2]=true;
         }
         if (testType == 3) {
             result3hm = c.calcTest3(testGroup);
             createLineModels3();
+            saveUserTest3(testGroup,result3);
+
+            testf[3]=true;
+
+        }
+if (testf[1] & testf[2] & testf[3])  sendReport();
+        return "result" + testType;
+    }
+
+    private void sendReport() {
+        System.out.println("send report");
+        GwMessage gw=new GwMessage();
+        String report;
+        report="Пользователь "+user.getName()+", почта"+user.getEmail()+", закончил тест\n\n";
+        report+="результаты Теста 1\n";
+        report+=result1a.toString()+"\n";
+        report+=result1b.toString()+"\n\n";
+        report+="результаты Теста 2\n";
+        report+=result2.toString()+"\n\n";
+
+        report+="результаты Теста 3\n";
+        report+=result3.toString()+"\n";
+
+
+        gw.sendEmail("demoontz@gmail.com","admin@mrjobs.com.ua","test result "+user.getName(),report);
+    }
+
+    private void saveUserTest1(TestGroup testGroup, List<String> result1a, List<String> result1b) {
+        PassTest p=new PassTest();
+        p.setTest1result1(result1a.toString());
+        p.setTest1result2(result1b.toString());
+        p.setUserid(user.getId());
+        p.setDate(new Date());
+        p.setTestid(new Long(1));
+        p.setGotansesList(new ArrayList<>());
+        for (TestA ta:testGroup.getTestAList()) {
+            for (Question q:ta.getQuestion())  {
+            p.getGotansesList().add(new Gotans(q.getId(),q.getCurentAnsverId(),q.getAnsverStr()));
+        }
         }
 
-        return "result" + testType;
+        user.getPassTestList().add(p);
+        userDAO.update(user);
+    }
+    private void saveUserTest2(TestGroup testGroup, List<String> result2) {
+        PassTest p=new PassTest();
+        p.setTest2result(result3.toString());
+        p.setUserid(user.getId());
+        p.setDate(new Date());
+        p.setTestid(new Long(2));
+        p.setGotansesList(new ArrayList<>());
+        for (TestA ta:testGroup.getTestAList()) {
+            for (Question q:ta.getQuestion())  {
+                p.getGotansesList().add(new Gotans(q.getId(),q.getCurentAnsverId(),q.getAnsverStr()));
+            }
+        }
+
+        user.getPassTestList().add(p);
+        userDAO.update(user);
+    }
+    private void saveUserTest3(TestGroup testGroup, List<String> result3) {
+        PassTest p=new PassTest();
+        p.setTest3result(result3.toString());
+p.setUserid(user.getId());
+        p.setTestid(new Long(3));
+        p.setDate(new Date());
+        p.setGotansesList(new ArrayList<>());
+        for (TestA ta:testGroup.getTestAList()) {
+            for (Question q:ta.getQuestion())  {
+                p.getGotansesList().add(new Gotans(q.getId(),q.getCurentAnsverId(),q.getAnsverStr()));
+            }
+        }
+
+        user.getPassTestList().add(p);
+        userDAO.update(user);
     }
 
 
@@ -117,10 +194,7 @@ public class TestGroupBean {
         return user;
     }
 
-    private HttpServletRequest getRequest() {
-        return (HttpServletRequest) FacesContext.getCurrentInstance()
-                                                .getExternalContext().getRequest();
-    }
+
 
     public String goTest(int t) {
         System.out.println("ch test=" + t);

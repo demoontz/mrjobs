@@ -9,7 +9,7 @@
 <h:body>
     <ui:composition>
         <h:form id="form">
-            <p:panel style="width: 80%; position:absolute;left:10%;">
+            <p:panel style="width: 80%; position:absolute;left:10%;" styleClass="ui-noborder">
                 <p:fieldset legend="Правила теста:" toggleable="true" toggleSpeed="500" style="margin-bottom:20px">
                     <h:panelGrid columns="2" cellpadding="5">
 
@@ -34,9 +34,9 @@
                             <h:outputText value="#{testGroupBean.question.text}" escape="false"/>
                         </p:column>
                         <p:column headerText="A" width="200" rendered="#{testGroupBean.question.typeQ==1}">
-                            <p:selectOneRadio layout="grid" columns="1" required="true">
+                            <p:selectOneRadio layout="grid" columns="1" required="true" >
                                 <f:selectItems value="#{testGroupBean.question.answer}" var="c" itemLabel="#{c.text}"
-                                               itemValue="#{c}"/>
+                                               itemValue="#{c}" />
                             </p:selectOneRadio>
                         </p:column>
                         <p:column headerText="A" width="40" rendered="#{testGroupBean.question.typeQ==2}">

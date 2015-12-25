@@ -1,6 +1,10 @@
 package org.demoon.mrjobs.model.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,49 +12,31 @@ import java.util.List;
  */
 @Entity
 @Table(name = "passtest")
-public class PassTest    extends GenEntity {
-    @Id
+public class PassTest
+    extends GenEntity {
+
+    @Id @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long        id;
+    private Long id;
 
-    @OneToOne
-    private TestGroup testGroup;
-    @Column
-    private String result;
+    @Getter @Setter
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<Gotans> gotansesList;
+    @Getter @Setter
+    private String test1result1;
+    @Getter @Setter
+    private String test1result2;
+    @Getter @Setter
+    private String test2result;
+    @Getter @Setter
+    private String test3result;
+    @Getter @Setter
+    private Date date;
 
-    public PassTest() {
-    }
+    @Getter @Setter
+    private Long userid;
+    @Getter @Setter
+    private Long testid;
 
-    public PassTest(TestGroup testGroup, String result) {
-        this.result=result;
-        this.testGroup=testGroup;
-    }
-
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public TestGroup getTestGroup() {
-        return testGroup;
-    }
-
-    public void setTestGroup(TestGroup testGroup) {
-        this.testGroup = testGroup;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
 }

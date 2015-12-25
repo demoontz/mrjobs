@@ -12,10 +12,10 @@
     <p:panelGrid style="width: 100%" styleClass="ui-noborder">
         <p:row>
             <p:column style="width: 200px">
-                    <h:outputLabel value="LOGO PANEL"/>
+
             </p:column>
             <p:column >
-                    <h:outputLabel value="Диагностика талантов"/>
+
             </p:column>
             <p:column style="width: 180px">
                 <p:panelGrid>
@@ -23,9 +23,7 @@
                         <p:column>
                             <p:panelGrid>
                                 <p:row>
-                                    <p:column>Рус</p:column>
-                                    <p:column>Укр</p:column>
-                                    <p:column>Eng</p:column>
+
                                 </p:row>
                             </p:panelGrid>
                         </p:column>
@@ -37,15 +35,17 @@
             <p:column>
                 <p:panelGrid>
                     <p:row>
-                        <p:column>tel +380 444-44-44</p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column>Skype: mrjobs</p:column>
+
+
                     </p:row>
                 </p:panelGrid>
             </p:column>
             <p:column>
-                <h:outputLabel value="Нашли свои таланты уже 265 человек"/>
+                Перед вами батарея тестов для определения ваших способностей (талантов).
+                Подготовьтесь к прохождению теста – выделите 70мин времени, чтобы вы не прерывали тест и вам никто не мешал.
+                Будьте в хорошем расположении духа, так как это может повлиять на результаты тестов.
+                Если будет потеряна связь или вам придется прервать тест, тестирование будет остановлено и все придется начинать сначала.
+
             </p:column>
             <p:column>
                 <p:panelGrid>
@@ -54,7 +54,7 @@
                     </p:row>
                     <p:row>
                         <p:outputLabel value="Hello #{testGroupBean.user.name}"  rendered="#{testGroupBean.user.id!=null}"/>
-                    <p:column><p:link value="Вход" outcome="/login" rendered="#{testGroupBean.user.id==null}" /></p:column>
+                    <p:column><p:link value="Вход" outcome="/protected/tests" rendered="#{testGroupBean.user.id==null}" /></p:column>
                     <p:column><p:commandLink value="Выход" action="#{usermb.logOut}"  rendered="#{testGroupBean.user.id!=null}"/></p:column>
                 </p:row>
                 </p:panelGrid>

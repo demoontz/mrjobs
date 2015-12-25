@@ -12,21 +12,23 @@
 
         <ui:define name="page-body">
             <h:form>
-                <p:panel style="width: 80%; position:absolute;left:10%;">
-                <p:dataScroller value="#{testGroupBean.listTestG}" var="testG" chunkSize="10">
-                    <f:facet name="header">
-                        Доступные тесты:
-                    </f:facet>
+                <p:panel style="width: 80%; position:absolute;left:10%;" styleClass="ui-noborder">
 
-                    <p:fieldset legend="#{testG.name}" style="margin-bottom:20px">
-                        <h:panelGrid columns="2" cellpadding="5">
+                    <p:dataScroller value="#{testGroupBean.listTestG}" var="testG" chunkSize="10">
+                        <f:facet name="header">
+                            Доступные тесты:
+                        </f:facet>
 
-                            <h:outputText
-                                    value="#{testG.descr}"/>
-                        </h:panelGrid>
-                        <p:commandButton value="Начать! " action="#{testGroupBean.goTest(testG.id)}" ajax="false"/>
-                    </p:fieldset>
-                </p:dataScroller>
+                        <p:fieldset legend="#{testG.name}" style="margin-bottom:20px">
+                            <h:panelGrid columns="2" cellpadding="5">
+
+                                <h:outputText
+                                        value="#{testG.descr}"/>
+                            </h:panelGrid>
+                            <p:commandButton value="Начать! " action="#{testGroupBean.goTest(testG.id)}" ajax="false"
+                                             rendered="#{testGroupBean.testf[testG.id-1]}"/>
+                        </p:fieldset>
+                    </p:dataScroller>
                 </p:panel>
 
 
